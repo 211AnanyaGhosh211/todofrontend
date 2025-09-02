@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import TodoList from "./TodoList";
+import TodoForm from "./TodoForm";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://todobackend-2-fhuw.onrender.com/api/todos")
+      .then((res) => {
+        // Handle the new response structure with pagination
+        const todoData = res.data.todos || res.data;
+        setTodos(todoData);
+      })
+      .catch((err) => {
+        console.error("Error fetching todos:", err);
+        setTodos([]);
+      });
+  }, []);
+
+  const addTodo = (task) => {
+    axios.post("https://todobackend-2-fhuw.onrender.com/api/todos", { task })
+      .then((res) => {
+        setTodos([...todos, res.data]);
+      })
+      .catch((err) => {
+        console.error("Error adding todo:", err);
+      });
+  };
+
+  const deleteTodo = (id) => {
+    axios.delete(`https://todobackend-2-fhuw.onrender.com/api/todos/${id}`)
+      .then(() => {
+        setTodos(todos.filter((t) => t._id !== id));
+      })
+      .catch((err) => {
+        console.error("Error deleting todo:", err);
+      });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "20px", textAlign: "center" }}>
+      <h1>📝 Todo List (PWA)</h1>
+      <TodoForm addTodo={addTodo} />
+      <TodoList todos={todos} deleteTodo={deleteTodo} />
     </div>
   );
 }
