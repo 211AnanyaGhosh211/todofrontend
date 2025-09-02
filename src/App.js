@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
+import CameraAccess from "./CameraAccess";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -42,8 +43,17 @@ function App() {
   return (
     <div style={{ padding: "20px", textAlign: "center" }}>
       <h1>📝 Todo List (PWA)</h1>
-      <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} />
+      
+      {/* Camera Section for Testing */}
+      <div style={{ marginBottom: "30px" }}>
+        <CameraAccess />
+      </div>
+      
+      {/* Todo Section */}
+      <div>
+        <TodoForm addTodo={addTodo} />
+        <TodoList todos={todos} deleteTodo={deleteTodo} />
+      </div>
     </div>
   );
 }
