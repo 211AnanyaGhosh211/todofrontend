@@ -3,6 +3,7 @@ import axios from "axios";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import CameraAccess from "./CameraAccess";
+import VoiceRecorder from "./VoiceRecorder";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -44,9 +45,14 @@ function App() {
     <div style={{ padding: "20px", textAlign: "center" }}>
       <h1>📝 Todo List (PWA)</h1>
       
-      {/* Camera Section for Testing */}
+      {/* Camera Section */}
       <div style={{ marginBottom: "30px" }}>
         <CameraAccess />
+      </div>
+      
+      {/* Voice Recorder Section */}
+      <div style={{ marginBottom: "30px" }}>
+        <VoiceRecorder />
       </div>
       
       {/* Todo Section */}

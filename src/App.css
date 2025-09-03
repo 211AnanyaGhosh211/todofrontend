@@ -167,3 +167,202 @@
     margin: 0.25rem 0;
   }
 }
+
+/* Voice Recorder Specific Styles */
+.voice-recorder-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.recording-timer {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.recording-controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.recording-controls button {
+  min-width: 120px;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.recording-controls button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.recording-controls button:active {
+  transform: translateY(0);
+}
+
+.audio-player-container {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.audio-player-container audio {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.audio-controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.audio-controls button {
+  min-width: 140px;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mobile-specific voice recorder styles */
+@media (max-width: 768px) {
+  .voice-recorder-container {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  .recording-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .recording-controls button {
+    width: 100%;
+    max-width: 280px;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  
+  .audio-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .audio-controls button {
+    width: 100%;
+    max-width: 280px;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  
+  .recording-timer {
+    font-size: 1.5rem;
+    padding: 0.75rem;
+  }
+}
+
+/* Touch-friendly voice recorder buttons */
+@media (hover: none) and (pointer: coarse) {
+  .recording-controls button,
+  .audio-controls button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  .recording-controls button:active,
+  .audio-controls button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Recording state animations */
+.recording-active {
+  animation: recordingGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes recordingGlow {
+  from { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+  to { box-shadow: 0 0 30px rgba(255, 107, 107, 0.8); }
+}
+
+/* Permission status styling */
+.permission-status {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.permission-status.denied {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+}
+
+.permission-status.granted {
+  background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+}
+
+/* Mobile help section styling */
+.mobile-help {
+  background: linear-gradient(135deg, #ffd93d 0%, #f6c90e 100%);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 5px 15px rgba(255, 217, 61, 0.3);
+}
+
+.mobile-help h3 {
+  color: #8b6914;
+  margin-bottom: 1rem;
+}
+
+.mobile-help p,
+.mobile-help li {
+  color: #8b6914;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-help button {
+  background: #8b6914;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-help button:hover {
+  background: #6b5210;
+  transform: translateY(-1px);
+}
